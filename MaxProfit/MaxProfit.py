@@ -20,23 +20,40 @@ https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/description/?ut
 
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。\
+
+思路： 最大利润便是 波峰 与 波谷的 差值
+        计算差值，  for循环中 先比较 nums[i]是否比  上一个波谷的值 小， 如果是，它就是波谷，
+        然后计算 nums[i]与波谷的差值，如果它比最大利润 max_profit大，那么它就是最大利润
 '''
 
 
 
 class Solution:
-    def maxProfit(self,nums):
-        length = len(nums) - 1
-        for i in (0,length):
-            count = 0
-
-            for j in (i,length):
+    def maxProfit(self,prices):
+        if prices is None:
+            return 0
+        # python申明正负无穷大
+        min_price = float('inf')
+        max_profit = 0
+        for price in prices:
+            if price < min_price:
+                min_price = price
+            elif max_profit < price - min_price:
+                max_profit = price - min_price
+        return max_profit
+    #嵌套for，不建议
+    def maxProfitByMySelf(self,nums):
+        length = len(nums)
+        count = 0
+        for i in range(0,length-1):
+            for j in range(i,length-1):
                 a = nums[j]
                 b = nums[i]
                 count = max(count, nums[j]-nums[i])
 
         return count
+
 
 if __name__=="__main__":
     s = Solution()
