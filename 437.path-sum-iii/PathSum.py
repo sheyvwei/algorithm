@@ -61,6 +61,30 @@ if __name__=="__main__":
     1 if a == 7 else 0
     print (1 if a == 8 else 0)
 
+    root = TreeNode(10)
+    first1 = TreeNode(5)
+    first2 = TreeNode(-3)
+    root.left = first1
+    root.right = first2
+    second1 = TreeNode(3)
+    second2 = TreeNode(2)
+    second3 = TreeNode(11)
+    first1.left = second1
+    first1.right = second2
+    first2.right = second3
+
+    three1 = TreeNode(3)
+    three2 = TreeNode(-2)
+    three3 = TreeNode(1)
+
+    second1.left = three1
+    second1.right = three2
+    second2.right = three3
+    s = Solution()
+    result = s.pathSum(root,sum=8)
+    print (result)
+
+
 
 
 
