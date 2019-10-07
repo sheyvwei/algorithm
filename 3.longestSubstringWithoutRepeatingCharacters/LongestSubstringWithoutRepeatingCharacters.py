@@ -22,7 +22,9 @@ class Solution:
         maxLeng = 0
         for i in range(len(s)):
             if s[i] in map:
+                #更新左边
                 left = max(map[s[i]], left)
+            #每次都要计算下面的式子，计算最长的值以及如果重复也直接赋值到map更新最新值
             maxLeng = max(maxLeng, i - left + 1)
             map[s[i]] = i + 1
         return maxLeng
